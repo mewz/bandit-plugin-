@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <scm>
+    <connection>scm:git:ssh://github.com/jenkinsci/</connection>
+    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/</developerConnection>
+    <url>https://github.com/jenkinsci/</url>
+    <tag>HEAD</tag>
+  </scm>
+  <modelVersion>4.0.0</modelVersion>
+ 
+  <parent>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>plugin</artifactId>
+    <version>1.609.2</version>
+  </parent>
+
+  <artifactId>bandit</artifactId>
+  <packaging>hpi</packaging>
+  <name>Bandit Plugin</name>
+  <version>0.9-SNAPSHOT</version>
+  <url>https://wiki.jenkins-ci.org/display/JENKINS/</url>
+  <description>Display vulnerability results from Bandit</description>
+
+  <licenses>
+    <license>
+      <name>MIT license</name>
+      <comments></comments>
+    </license>
+    <license>
+      <name>LGPL</name>
+      <comments></comments>
+    </license>
+    <license>
+      <name>BSD license</name>
+      <comments>All YUI source code is under the BSD license.</comments>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Jason Hullinger</name>
+      <id>amewz</id>
+    </developer>
+  </developers>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.jvnet.hudson.plugins</groupId>
+      <artifactId>analysis-core</artifactId>
+      <version>1.78</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-step-api</artifactId>
+      <version>1.15</version>
+    </dependency>
+    <dependency>
+        <groupId>org.jvnet.hudson.plugins</groupId>
+        <artifactId>analysis-core</artifactId>
+        <version>1.75</version>
+        <type>jar</type>
+    </dependency>
+    <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20160212</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.kohsuke.stapler</groupId>
+        <artifactId>maven-stapler-plugin</artifactId>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.jenkins-ci.tools</groupId>
+        <artifactId>maven-hpi-plugin</artifactId>
+        <version>1.117</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <additionalparam>-Xdoclint:none</additionalparam>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>java.net2</id>
+      <url>http://download.java.net/maven/2/</url>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>repo.jenkins-ci.org</id>
+      <url>http://repo.jenkins-ci.org/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
+</project>  
+

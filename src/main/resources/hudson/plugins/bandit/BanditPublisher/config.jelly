@@ -1,0 +1,14 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+	xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:u="/util">
+<f:entry title="${%Bandit Output File}">
+  <f:textbox field="outputFile" id="outputFile" default="bandit.json"/>
+</f:entry>
+<f:advanced>
+  <f:entry>
+    <u:health id="bandit"/>
+    <u:thresholds id="bandit"/>
+    <u:trend id="bandit"/>
+  </f:entry>
+  </f:advanced>
+</j:jelly>
