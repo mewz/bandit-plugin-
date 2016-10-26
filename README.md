@@ -2,7 +2,7 @@ A Hudson/[Jenkins](http://jenkins-ci.org) plugin to run [Bandit](https://github.
 
 ## Requirements
 
-This plugin runs Python static source code analyis tool, Bandit (https://github.com/openstack/bandit). You will need Bandit installed to use this plugin
+This plugin runs Python static source code analysis tool, Bandit (https://github.com/openstack/bandit). You will need Bandit installed to use this plugin
 
 
 ### Add Shell Command
