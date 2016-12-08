@@ -7,12 +7,19 @@ import hudson.plugins.analysis.core.BuildResult;
 import hudson.plugins.analysis.core.ParserResult;
 import hudson.plugins.analysis.core.ResultAction;
 
+import org.kohsuke.stapler.export.ExportedBean;
+import org.kohsuke.stapler.export.Exported;
+import hudson.model.Api;
+
 import com.thoughtworks.xstream.XStream;
 
-
+@ExportedBean
 public class BanditResult extends BuildResult {
     /** Unique identifier of this class. */
     private static final long serialVersionUID = 1004L;
+	
+	// @Exported
+	// public Map warning_types = new HashMap<String, String>();
 
     /**
      * Creates a new instance of {@link BanditResult}
@@ -134,4 +141,14 @@ public class BanditResult extends BuildResult {
         }
         return summary.toString();
     }
+	
+	@Override
+	public Api getApi() { 
+		return new Api(this); 
+	}
+	
+	@Exported
+	public java.util.Map warning_types(){
+		return BanditPublisher.warning_types;
+	}
 }

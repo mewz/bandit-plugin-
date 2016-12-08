@@ -11,12 +11,13 @@ import hudson.plugins.analysis.util.PluginLogger;
 import hudson.plugins.analysis.util.model.Priority;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import org.kohsuke.stapler.DataBoundConstructor;
-
 
 public class BanditPublisher extends HealthAwarePublisher {
 
@@ -25,8 +26,9 @@ public class BanditPublisher extends HealthAwarePublisher {
 	/** Descriptor of this publisher. */
 	@Extension
 	public static final BanditDescriptor BANDIT_DESCRIPTOR = new BanditDescriptor();
+	public static Map<String, Integer> warning_types = new HashMap<String, Integer>();
 	public String outputFile;
-
+	
 	/**
 	 * Creates a new instance of <code>BanditPublisher</code>
 	 *
@@ -133,23 +135,35 @@ public class BanditPublisher extends HealthAwarePublisher {
 	                        priority
 	                );
 	                project.addAnnotation(warning);
+					
+					this.setWarningTypes(result.getString("test_name"));
 	            }
 	        }
-	    }
-
-	/** {@inheritDoc} */
-	@Override
-		public PluginDescriptor getDescriptor() {
-			return BANDIT_DESCRIPTOR;
+	    }	
+		
+		private void setWarningTypes(String test_name){
+			if(!this.warning_types.containsKey(test_name)){
+				this.warning_types.put(test_name, 1);
+			}
+			else{
+				int j = this.warning_types.get(test_name);
+				this.warning_types.put(test_name, j+1);
+			}
 		}
+		
+		/** {@inheritDoc} */
+		@Override
+			public PluginDescriptor getDescriptor() {
+				return BANDIT_DESCRIPTOR;
+			}
 
-	/** {@inheritDoc} */
-	@Override
-		protected boolean canContinue(final Result result) {
-			return super.canContinue(result);
-		}
+		/** {@inheritDoc} */
+		@Override
+			protected boolean canContinue(final Result result) {
+				return super.canContinue(result);
+			}
 
-  public hudson.matrix.MatrixAggregator createAggregator(hudson.matrix.MatrixBuild build,hudson.Launcher launcher,hudson.model.BuildListener listener) {
-    return null;
-  }
+	  public hudson.matrix.MatrixAggregator createAggregator(hudson.matrix.MatrixBuild build,hudson.Launcher launcher,hudson.model.BuildListener listener) {
+	    return null;
+	  }
 }

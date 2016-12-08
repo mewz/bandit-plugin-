@@ -3,7 +3,6 @@ package hudson.plugins.bandit;
 import hudson.model.AbstractProject;
 import hudson.plugins.analysis.core.AbstractProjectAction;
 
-
 public class BanditProjectAction extends AbstractProjectAction<BanditResultAction> {
     /** Unique identifier of this class. */
     private static final long serialVersionUID = 1002L;
